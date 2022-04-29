@@ -72,4 +72,7 @@ public class Battery{
         this.voltage = voltage;
     }
 
+    public String toString(){
+        return "\nNon-rechargeable battery\n"+"Name: "+name+"\nLifetime cost: 0"+"\n";
+    }
 }

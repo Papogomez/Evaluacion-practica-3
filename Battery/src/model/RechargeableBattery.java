@@ -47,10 +47,17 @@ public class RechargeableBattery extends Battery implements Rechargeable{
     }
 
     public double calculateUsefulLifeCost(){
-        double total = 0;
-        
-        
-        return total;
+        double out=0;
+        if (type=='l'){
+            out=((super.getCost()*super.getVoltage()*super.getCapacity())/(1000*chargerNumber*FACTOR_LITIO));
+        } else if (type=='n'){
+            out=((super.getCost()*super.getVoltage()*super.getCapacity())/(1000*chargerNumber*FACTOR_NIQUEL_CADIO));
+        }
+        return out;
     }
 
+    @Override
+    public String toString(){
+        return "\nRechargeable battery\nName: "+super.getName()+"\nLifetime cost: "+calculateUsefulLifeCost()+"\n";
+    }
 }

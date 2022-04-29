@@ -56,18 +56,42 @@ public class Company{
     }
 
     public String showTotalBatteries() {
-        String str="";
-        return str;
+    	int rechargeable=0;
+        int noRechargeable = 0;
+        for (int i = 0; i < MAX_BATTERIES; i++) {
+            if (batteries[i]!=null && batteries[i] instanceof RechargeableBattery) {
+                rechargeable++;
+            }else if (batteries[i]!=null){
+                noRechargeable++;
+            }
+        }
+        return "The total of:\n"+"*Traditional batteries: "+noRechargeable+"\n"+"*Rechargeable batteries:"+rechargeable;
     }
     
-    public String showBatteriesInfo(String nameBattery) {
-        String str="";
-        return str;
+    public String showBatteriesInfo() {
+    	String str = "";
+        for (int i = 0; i < MAX_BATTERIES; i++) {
+            if (batteries[i]!=null) {
+                str+=batteries[i].toString();
+            }
+        }
+    	return str;
     }
     
 
+	
 	public double calculateUsefulPromLifeCost(){
-		return 0.0;
+        int index=0;
+        double amount;
+        double costRechargeableBatteries=0;
+        for (int i = 0; i < MAX_BATTERIES; i++) {
+            if (batteries[i]!=null && batteries[i] instanceof RechargeableBattery) {
+                costRechargeableBatteries+=((RechargeableBattery)batteries[i]).calculateUsefulLifeCost();
+                index++;
+            }
+        }
+        amount=(costRechargeableBatteries/index);
+		return amount;
 	}
 
 }
