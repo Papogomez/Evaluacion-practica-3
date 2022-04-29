@@ -100,6 +100,8 @@ public class Menu {
 
     public void registerRechargeableBattery() {
 
+		boolean validation = false;
+
         System.out.println("Ingrese el nombre de la bateria");
 		String name;
 		name = sc.nextLine();
@@ -118,12 +120,17 @@ public class Menu {
         System.out.println("Ingrese el numero de cargas");
         chargerNumber = sc.nextInt();
 
-        char type;
-        System.out.println("�cual es el tipo de bateria? Litio (l) o  Niquel-Cadio (n)");
-        type = sc.next().toCharArray()[0];
-        
-        company.registerRechargeableBattery(name, voltage, cost, capacity, chargerNumber, type);
-        
+		while(validation == false){
+        	char type;
+        	System.out.println("cual es el tipo de bateria? Litio (l) o  Niquel-Cadio (n)");
+        	type = sc.next().toCharArray()[0];
+			if(type != 'l' && type !='n'){
+				System.out.println("Error-- please Try option");
+			}else{
+				validation =true;
+			}
+        	company.registerRechargeableBattery(name, voltage, cost, capacity, chargerNumber, type);
+		}
     }
 
 }
